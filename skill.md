@@ -28,6 +28,21 @@
 
 ---
 
+### [작업 2] VS Code CSS 빨강불 제거 (2026-04-20)
+
+#### 이번 작업 목표
+- `src/styles/tailwind.css`의 VS Code 빨강 밑줄 에러 제거
+
+#### 원인
+- Tailwind CSS v4의 `source(none)` 구문을 VS Code 기본 CSS 언어 서버가 인식 못 함
+- 빌드/런타임 에러가 아닌 순수 IDE 린팅 오류
+
+#### 조치
+- `.vscode/settings.json`에 `"css.validate": false` 추가
+- 기존 `"css.lint.unknownAtRules": "ignore"`는 유지
+
+---
+
 ### [작업 1] 프로젝트 초기 세팅 확인 및 skill.md 생성 (2026-04-20)
 
 #### 이번 작업 목표
