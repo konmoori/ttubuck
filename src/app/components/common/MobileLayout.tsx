@@ -50,7 +50,7 @@ function MobileBrowserTop() {
 
 function MobileBrowserBottom() {
   return (
-    <div className="content-stretch flex flex-col items-start relative shrink-0 w-[375px]">
+    <div className="content-stretch flex flex-col items-start relative shrink-0 w-[360px]">
       <div className="bg-white h-[34px] relative shrink-0 w-full">
         <div className="-translate-x-1/2 absolute bg-black bottom-[8px] h-[5px] left-[calc(50%+0.5px)] rounded-[100px] w-[134px]" />
       </div>
@@ -66,7 +66,7 @@ interface MobileLayoutProps {
 
 export function MobileLayout({ children, showBottom = true, activeTab }: MobileLayoutProps) {
   return (
-    <div className="bg-white content-stretch flex flex-col items-center overflow-hidden relative rounded-[24px] size-full">
+    <div className="bg-white content-stretch flex flex-col items-center overflow-hidden relative rounded-[24px] w-[360px] min-h-svh">
       <MobileBrowserTop />
       {children}
       {showBottom && activeTab && <BottomNavBar activeTab={activeTab} />}
