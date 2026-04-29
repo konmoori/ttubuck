@@ -1,0 +1,12 @@
+node_modules
+dist
+.env
+
+# editor
+.vscode
+
+# mac
+.DS_Store
+
+# build
+*.log
