@@ -28,6 +28,72 @@
 
 ---
 
+### [작업 7] 전체 화면 스크롤바 숨김 (2026-04-21)
+
+#### 이번 작업 목표
+- 모든 화면에서 스크롤바 UI 숨김 (스크롤 기능은 유지)
+
+#### 조치
+- `src/styles/index.css`에 `* { scrollbar-width: none; -ms-overflow-style: none; }` 및 `*::-webkit-scrollbar { display: none; }` 전역 추가
+
+---
+
+### [작업 6] 온보딩 step 0 뒤로가기 추가 + 스와이프 힌트 항상 표시 (2026-04-21)
+
+#### 이번 작업 목표
+- 첫 번째 온보딩(step 0)에도 뒤로가기 버튼 표시 → `/login`으로 이동
+- 스와이프 힌트 애니메이션을 모든 스텝에서 항상 표시 (사라지지 않음)
+
+#### 조치
+- `handleBack`: step 0일 때 `navigate('/login')` 추가
+- 뒤로가기 버튼 조건부 렌더링 제거 → 항상 표시
+- `showHint` 상태 및 `AnimatePresence` 제거, 힌트를 단순 `div`로 항상 렌더링
+
+---
+
+### [작업 5] 온보딩 스와이프 전환 + 뒤로가기 + 스와이프 힌트 (2026-04-21)
+
+#### 이번 작업 목표
+- 온보딩 스텝 전환을 클릭 → 스와이프(좌/우)로 변경
+- 건너뛰기 반대편에 뒤로가기 버튼 추가
+- 스와이프 유도 손가락 애니메이션 + 안내 텍스트 추가
+
+#### 조치
+- `onTouchStart` / `onTouchEnd`로 수평 스와이프 감지 (threshold 50px), 좌→다음, 우→이전
+- 상단 바 `justify-between`으로 뒤로가기(좌) / 건너뛰기(우) 배치; step 0엔 뒤로가기 숨김
+- `SwipeHintIcon` SVG 컴포넌트 + `motion` 좌우 반복 애니메이션으로 힌트 표시
+- 첫 스와이프 시 `showHint` false로 힌트 사라짐 (`AnimatePresence` fade out)
+
+---
+
+### [작업 4] 온보딩 마지막 스텝 건너뛰기 버튼 표시 (2026-04-21)
+
+#### 이번 작업 목표
+- 온보딩 3번째(마지막) 화면에도 건너뛰기 버튼 노출
+
+#### 원인
+- `showSkip = currentStep < 2` 조건으로 step 2에서 버튼이 숨겨져 있었음
+
+#### 조치
+- `OnboardingPage.tsx`: `showSkip` 변수 제거, 건너뛰기 버튼을 항상 렌더링하도록 변경
+
+---
+
+### [작업 3] OnboardingPage 콘텐츠 수직 가운데 정렬 (2026-04-21)
+
+#### 이번 작업 목표
+- 온보딩 1스텝의 말풍선 + 캐릭터 영역을 화면 Y축 가운데로 정렬
+
+#### 원인
+- 기존 코드가 `pt-[107px]` / `pt-[144px]` 고정 패딩으로 위치를 잡아 화면 상단에 치우침
+
+#### 조치
+- `OnboardingPage.tsx`: 고정 `pt-` 패딩 제거
+- 콘텐츠 래퍼를 `flex-1 flex items-center justify-center`로 변경해 남은 공간에서 수직 가운데 정렬
+- `PageIndicator`는 하단에 유지 (`justify-between` 구조 유지)
+
+---
+
 ### [작업 2] VS Code CSS 빨강불 제거 (2026-04-20)
 
 #### 이번 작업 목표
